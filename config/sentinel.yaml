@@ -1,0 +1,16 @@
+# Argus configuration
+# All values can be overridden by environment variables.
+
+filter:
+  threshold: 6          # 0-10; items below this score are dropped
+  max_digest_items: 10  # final digest shows at most this many items (up to 3 blogs)
+
+sources:
+  arxiv_days_back: 7    # fetch arXiv papers published in the last N days
+  s2_days_back: 14      # fetch Semantic Scholar papers from last N days
+
+email:
+  from: "Argus <digest@yourdomain.com>"
+
+# Optional: set your public GitHub repo URL for Slack digest links
+# repo_url: "https://github.com/your-username/argus"

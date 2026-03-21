@@ -1,0 +1,25 @@
+# Search terms used by fetchers.
+# Add or remove terms without touching Python code.
+
+arxiv:
+  - "AI safety"
+  - "AI alignment"
+  - "LLM evaluation"
+  - "red teaming language model"
+  - "interpretability neural network"
+  - "AI governance"
+  - "benchmark language model"
+  - "RLHF reward model"
+  - "jailbreak language model"
+  - "AI risk"
+  - "constitutional AI"
+  - "scalable oversight"
+  - "deceptive alignment"
+  - "model evaluation"
+
+semantic_scholar:
+  - "AI safety alignment"
+  - "LLM evaluation benchmark"
+  - "red teaming AI"
+  - "interpretability mechanistic"
+  - "AI governance policy"

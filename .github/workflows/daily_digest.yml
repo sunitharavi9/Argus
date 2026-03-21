@@ -1,0 +1,49 @@
+name: Daily Digest
+
+on:
+  schedule:
+    # 7am PT daily — adjust to your timezone:
+    # 8am EST  → "0 13 * * *"
+    - cron: "0 17 * * *"
+
+  # Manual trigger — adds "Run workflow" button in GitHub Actions UI
+  workflow_dispatch:
+
+permissions:
+  contents: write   # needed to commit digest + seen_ids.json back to repo
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true  # allows git push at the end
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -e ".[all]"
+
+      - name: Run Argus
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          DIGEST_EMAIL_TO: ${{ secrets.DIGEST_EMAIL_TO }}
+          DIGEST_EMAIL_FROM: ${{ secrets.DIGEST_EMAIL_FROM }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+          GIT_EMAIL: "github-actions[bot]@users.noreply.github.com"
+          GIT_NAME: "github-actions[bot]"
+        run: python -m argus.runner

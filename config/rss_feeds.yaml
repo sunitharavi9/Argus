@@ -1,0 +1,20 @@
+# RSS feeds monitored by Argus.
+# Add or remove feeds here — no code changes needed.
+
+feeds:
+  # AI Safety & Alignment research forums
+  - name: "LessWrong (curated)"
+    url: "https://www.lesswrong.com/feed.xml?view=curated-rss"
+
+  - name: "AI Alignment Forum"
+    url: "https://www.alignmentforum.org/feed.xml"
+
+  # Safety-focused labs & orgs
+  - name: "METR (ARC Evals)"
+    url: "https://metr.org/feed.xml"
+
+  - name: "OpenAI Blog"
+    url: "https://openai.com/blog/rss.xml"
+
+  - name: "DeepMind Blog"
+    url: "https://deepmind.google/blog/rss.xml"
